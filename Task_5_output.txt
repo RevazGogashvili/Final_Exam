@@ -1,0 +1,23 @@
+--- Step 1: Creating Baseline Data ---
+[Log] Created 'original.txt'.
+[Log] Baseline hashes saved to 'hashes.json'.
+
+Process finished with exit code 0
+
+--- Step 2: Simulating Tampering Attack ---
+[Log] Attack simulation: Created 'tampered.txt' with modified content.
+
+--- Verifying Integrity of 'tampered.txt' ---
+Stored SHA-256:  9471ccf8904479967ffb791b27479a510b199a97aaa341bdf52cee0dcf3024db
+Current SHA-256: 35f69a8a20e267082323c00bbf62f9869b4004e62f24d3ad988f3756b8085a97
+RESULT: ❌ FAIL! WARNING: File tampering detected!
+Detailed Algorithm Check:
+ - MD5 Mismatch
+ - SHA-1 Mismatch
+
+--- Verifying Integrity of 'original.txt' ---
+Stored SHA-256:  9471ccf8904479967ffb791b27479a510b199a97aaa341bdf52cee0dcf3024db
+Current SHA-256: 9471ccf8904479967ffb791b27479a510b199a97aaa341bdf52cee0dcf3024db
+RESULT: ✅ PASS. Integrity Verified.
+
+Process finished with exit code 0

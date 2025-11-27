@@ -1,0 +1,30 @@
+1. OpenSSL Findings (Target: www.google.com)
+
+Certificate Chain:
+- Leaf: www.google.com (The website itself)
+- Intermediate: GTS CA 1C3 (The authority validating Google)
+- Root: GTS Root R1 (The trusted root in the OS store)
+
+Cipher Suite Used: 
+TLS_AES_256_GCM_SHA384
+(This indicates AES-256 encryption using GCM mode and SHA-384 for hashing).
+
+TLS Version: 
+TLSv1.3
+
+2. Wireshark Handshake Components
+1. Client Hello: The client sends supported cipher suites, random bytes, and supported TLS versions to the server.
+2. Server Hello: The server selects the strongest shared cipher suite and replies.
+
+3. How TLS Provides Security
+
+Confidentiality (Privacy):
+TLS provides confidentiality through Symmetric Encryption (like AES). 
+While the handshake uses Asymmetric Encryption (RSA or ECC) to verify identity and exchange keys securely, the actual data transfer is encrypted using a shared Session Key. 
+This ensures that even if a hacker captures the packets (like we did in Wireshark), they only see scrambled "Application Data."
+
+Integrity (Trust):
+TLS provides integrity through Hashing (HMAC or AEAD tags like GCM). 
+Every packet sent includes a cryptographic hash or tag. 
+If a hacker intercepts a packet and tries to change a single bit (e.g., changing "transfer $10" to "transfer $99"), the hash calculation will fail upon arrival. 
+The receiving computer will know the data was tampered with and will drop the connection immediately.
